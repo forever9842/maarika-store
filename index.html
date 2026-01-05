@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maarika Store</title>
+<div class="welcome-box">
+    <h1 class="welcome-title">Welcome to Maarika Store</h1>
+
+    <p class="welcome-text">
+        Jahaan <strong>style</strong> milta hai <strong>bharose</strong> se,
+        aur har product ek kahani ke saath aata hai.
+    </p>
+
+    <p class="about-text">
+        Maarika Store ek premium online brand hai jo quality, elegance
+        aur customer satisfaction ko sabse upar rakhta hai.
+        Yahan har cheez soch-samajh kar chuni jaati hai,
+        taaki aapko mile sirf best.
+    </p>
+
+    <div class="shayari">
+        <p>
+            “Aap sirf customer nahi ho,<br>
+            aap hamari kahani ka hissa ho.<br>
+            Jo pasand aapki hai,<br>
+            wahi pehchaan hamari hai.”
+        </p>
+    </div>
+</div>
+
+    <style>
+        /* ===== BODY BACKGROUND ===== */
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffe4ec, #7a0019);
+            font-family: "Georgia", serif;
+        }
+
+        /* ===== BOOK PAGE EFFECT ===== */
+        .book {
+    max-width: 900px;   /* pehle 650px tha */
+    margin: 40px auto;
+    background: #fffafc;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow:
+        inset 8px 0 15px rgba(0,0,0,0.1),
+        0 20px 40px rgba(122,0,25,0.4);
+    position: relative;
+}
+        }
+
+        /* Book spine */
+        .book::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 100%;
+            background: linear-gradient(#800020, #b1123c);
+            border-radius: 12px 0 0 12px;
+        }
+
+        /* ===== HEADINGS ===== */
+        h1 {
+            text-align: center;
+            color: #800020;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #b1123c;
+            margin-top: 30px;
+            border-bottom: 2px solid #f2b6c6;
+            padding-bottom: 5px;
+        }
+
+        /* ===== TEXT ===== */
+        p, li {
+            color: #4a1c2f;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* ===== PRODUCT LIST ===== */
+        ul {
+            background: #ffe4ec;
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        /* ===== BUTTON COMMON ===== */
+        .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    margin: 8px 0;
+
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2.5s infinite;
+}
+        /* WhatsApp */
+        .wa {
+            background-color: #25D366;
+        }
+        .wa:hover {
+            background-color: #1ebe5d;
+        }
+
+        /* Email */
+        .mail {
+            background-color: #800020;
+        }
+        .mail:hover {
+            background-color: #d6336c;
+        }
+
+        /* Instagram */
+        .insta {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        .insta:hover {
+            opacity: 0.9;
+        }
+
+        /* ===== FOOTER LINE ===== */
+        .vip {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            color: #7a0019;
+            letter-spacing: 1px;
+        }/* ===== PRODUCTS LAYOUT ===== */
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ===== PRODUCT CARD ===== */
+.product-card {
+    position: relative;
+    background: #fff0f5;
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 8px 18px rgba(128,0,32,0.25);
+}
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(128,0,32,0.35);
+}
+/* ===== PRODUCT IMAGE ===== */
+.product-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+}
+}
+
+/* ===== PRODUCT TITLE ===== */
+.product-card h3 {
+    color: #800020;
+    margin-bottom: 6px;
+}
+
+/* ===== PRICE ===== */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #800020;
+    margin-bottom: 8px;
+}
+
+/* ===== OLD PRICE ===== */
+.old-price {
+    font-size: 16px;
+    text-decoration: line-through;
+    color: #777;
+    margin-left: 6px;
+}
+
+/* ===== DISCOUNT BADGE ===== */
+.discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #800020;
+    color: white;
+    padding: 5px 12px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+/* ===== BUY BUTTONS AREA ===== */
+.buy-links a {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    font-weight:600;
+    transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+/* ===== AMAZON BUTTON ===== */
+.amazon {
+    background-color: #ff9900;
+}
+.amazon:hover {
+    background-color: #e68a00;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+.buy-links a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -120%; }
+    50% { left: 120%; }
+    100% { left: 120%; }
+}
+/* ===== FLIPKART BUTTON ===== */
+.flipkart {
+    background-color: #2874f0;
+}
+.flipkart:hover {
+    background-color: #1b5fd6;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+.buy-links a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -120%; }
+    50% { left: 120%; }
+    100% { left: 120%; }
+}
+/* ===== IMAGE POPUP / LIGHTBOX ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox img {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 10%;
+    border-radius: 10px;
+}
+
+.lightbox:target {
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+.welcome-box {
+    text-align: center;
+    margin: 30px 0 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, #fff0f5, #fde6ee);
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(128,0,32,0.25);
+}
+
+.welcome-title {
+    font-size: 34px;
+    color: #800020;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.welcome-text {
+    font-size: 20px;
+    color: #4a2c2c;
+    margin-bottom: 15px;
+}
+
+.about-text {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.shayari {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    border-left: 6px solid #800020;
+    font-style: italic;
+    color: #800020;
+    font-size: 18px;
+}
+.welcome-story {
+    margin: 30px 0 45px;
+    padding: 28px;
+    background: linear-gradient(135deg, #fff5f8, #fde1ea);
+    border-radius: 18px;
+    box-shadow: 0 14px 30px rgba(128,0,32,0.22);
+}
+
+.story-text {
+    .story-text {
+    font-size: 20px;          /* 👈 bigger & readable */
+    color: #4a2c2c;
+    line-height: 2;           /* 👈 breathing space */
+    text-align: center;
+    font-weight: 500;
+}
+
+    /* animation related */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.story-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0,0,0,0.35);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(0,0,0,0);
+        transform: scale(1.03);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        transform: scale(1);
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="book">
+
+    <h1>☺️THANK YOU SO MUCH MAARIKA STORE☺️</h1>
+<div class="welcome-story">
+    <p class="story-text" id="storyLine"></p>
+</div>
+    <h2>Our Products</h2>
+
+<div class="products">
+
+    <!-- PRODUCT 1 : WATER BOTTLE -->
+    <div class="product-card">
+        <span class="discount">20% OFF</span>
+
+
+        <a href="bottle.jpg" target="_blank">
+    <img src="bottle.jpg" alt="Water Bottle">
+</a>
+
+        <h3>Water Bottle</h3>
+        <p>Premium quality water bottle for daily use.</p>
+
+        <p class="price">
+            ₹399 <span class="old-price">₹499</span>
+        </p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Buy on Amazon
+            </a>
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Buy on Flipkart
+            </a>
+        </div>
+    </div>
+
+    <!-- PRODUCT 2 : JHUMKE -->
+    <div class="product-card">
+        <span class="discount">30% OFF</span>
+
+        <img src="https://via.placeholder.com/400x250?text=Jhumke">
+
+        <h3>Jhumke</h3>
+        <p>Elegant traditional jhumke with premium finish.</p>
+
+        <p class="price">
+            ₹699 <span class="old-price">₹999</span>
+        </p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Buy on Amazon
+            </a>
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Buy on Flipkart
+            </a>
+        </div>
+    </div>
+
+    <!-- PRODUCT 3 : OTHER PRODUCTS -->
+    <div class="product-card">
+        <span class="discount">NEW</span>
+
+        <img src="https://via.placeholder.com/400x250?text=More+Products">
+
+        <h3>Other Products</h3>
+        <p>More premium products launching soon.</p>
+
+        <p class="price">Coming Soon</p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Amazon
+            </a>
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Flipkart
+            </a>
+        </div>
+    </div>
+
+</div></h2>
+
+<div class="products">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+        <h3>Water Bottle</h3>
+        <p>High quality water bottle for daily use.</p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Buy on Amazon
+            </a>
+
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Buy on Flipkart
+            </a>
+        </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+        <h3>Jhumke</h3>
+        <p>Stylish traditional jhumke with premium finish.</p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Buy on Amazon
+            </a>
+
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Buy on Flipkart
+            </a>
+        </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+        <h3>Other Products</h3>
+        <p>More premium products coming soon.</p>
+
+        <div class="buy-links">
+            <a href="https://www.amazon.in/" class="amazon" target="_blank">
+                Amazon
+            </a>
+
+            <a href="https://www.flipkart.com/" class="flipkart" target="_blank">
+                Flipkart
+            </a>
+        </div>
+    </div>
+
+</div></h2>
+    <ul>
+        <li>Water Bottle</li>
+        <li>Jhumke</li>
+        <li>Other Products</li>
+    </ul>
+
+    <h2>Contact & Order</h2>
+
+    <a href="https://wa.me/916398214130" class="btn wa">
+        Order on WhatsApp
+    </a><br>
+
+    <a href="mailto:maarikastore1@gmail.com" class="btn mail">
+        Email Us
+    </a><br>
+
+    <a href="https://www.instagram.com/maarikastore_9842" class="btn insta" target="_blank">
+        Follow on Instagram
+    </a>
+
+    <div class="vip">
+        ✦ Premium Online Brand Experience ✦
+    </div>
+
+</div>
+<script>
+const stories = [
+    "Aaj ek maa ne apni beti ke liye pyaar se ek gift chuna… beti ki muskaan ne din bana diya 💖",
+    "Gift chhota tha, par khushi bahut badi… aur us khushi ka naam tha Maarika Store ✨",
+    "Us bachchi ki aankhon ki chamak ne keh diya — Thank you Maarika Store 💝",
+    "Yahan har product sirf cheez nahi, kisi ke chehre ki muskaan hota hai 🌸",
+    "Maa ka pyaar, beti ki khushi aur beech me ek chhota sa gift — Maarika Store 💕",
+    "Kisi ke birthday ka surprise, kisi ki yaadon ka hissa — yahi hai Maarika Store ✨"
+];
+
+let index = 0;
+const storyElement = document.getElementById("storyLine");
+
+function changeStory() {
+    // hide
+    storyElement.classList.remove("show");
+
+    setTimeout(() => {
+        storyElement.innerText = stories[index];
+        storyElement.classList.add("show");
+        index = (index + 1) % stories.length;
+    }, 400);
+}
+
+// first time
+changeStory();
+
+// change every 5 seconds
+setInterval(changeStory, 5000);
+</script>
+</body>
+</html>
