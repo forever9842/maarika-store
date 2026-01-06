@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | Maarika Store</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+:root{
+  --pink:#fdecef;
+  --maroon:#6b0f2f;
+}
+
+body{
+  background:#fff;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#6b0f2f,#c94a6a);
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  position:sticky;
+  top:0;
+}
+
+.menu-btn{
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+  margin-right:15px;
+}
+
+.logo{
+  color:white;
+  font-size:24px;
+  font-weight:700;
+}
+
+/* PAGE */
+.container{
+  max-width:500px;
+  margin:80px auto;
+  background:#fff5f8;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.container h1{
+  color:var(--maroon);
+  margin-bottom:10px;
+}
+
+.container p{
+  color:#555;
+  margin-bottom:25px;
+  font-size:15px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+  margin-bottom:20px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#25D366;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  margin-top:80px;
+  background:#2b0b15;
+  color:#eee;
+  padding:30px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="menu-btn" onclick="history.back()">←</div>
+  <div class="logo">Maarika Store</div>
+</header>
+
+<div class="container">
+  <h1>Track Your Order</h1>
+  <p>Enter your Order ID to track your order on WhatsApp</p>
+
+  <input type="text" id="orderId" placeholder="Enter Order ID (e.g. MK123)">
+  <button onclick="trackOrder()">Track on WhatsApp</button>
+</div>
+
+<footer>
+  © 2026 Maarika Store | All Rights Reserved
+</footer>
+
+<script>
+function trackOrder(){
+  const orderId =
+    document.getElementById("orderId").value.trim();
+
+  if(orderId === ""){
+    alert("Please enter your Order ID");
+    return;
+  }
+
+  const message =
+`Hello Maarika Store,
+I want to track my order.
+Order ID: ${orderId}`;
+
+  const phone = "916398214130";
+  const encodedMessage = encodeURIComponent(message);
+  window.location.href =
+    `https://wa.me/${phone}?text=${encodedMessage}`;
+}
+</script>
+
+</body>
+</html>
