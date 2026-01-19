@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maarika Store</title>
+<title>Maarika Store</title> 
 
 <style>
 /* ===== RESET ===== */
@@ -15,7 +15,7 @@
 }
 
 body{
-  background:#fff;
+  background:#fdecef;
   color:#333;
 }
 
@@ -45,8 +45,9 @@ header{
 
 .logo{
   color:white;
-  font-size:24px;
+  font-size:40px;
   font-weight:700;
+  font-family: 'Georgia', serif;
 }
 
 /* ===== SIDE MENU ===== */
@@ -62,7 +63,6 @@ header{
   transition:0.4s;
   z-index:2000;
 }
-
 .side-menu.active{
   left:0;
 }
@@ -106,7 +106,7 @@ header{
 /* ===== HERO ===== */
 .hero{
   background:var(--pink);
-  padding:70px 20px;
+  padding:15px 15px;
   text-align:center;
 }
 
@@ -120,16 +120,6 @@ header{
   max-width:700px;
   margin:auto;
   font-size:17px;
-}
-
-.hero button{
-  margin-top:25px;
-  padding:14px 35px;
-  background:var(--maroon);
-  color:white;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
 }
 
 /* ===== PRODUCTS ===== */
@@ -160,14 +150,21 @@ header{
 }
 
 .img-box{
-  height:220px;
-  background:#eee;
+  height:320px;
+  background:#fff5f8;  
   border-radius:12px;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#aaa;
-  margin-bottom:15px;
+  padding:10px;             
+}
+
+.img-box img{
+  width:100%;
+  height:100%;
+  object-fit:contain;       
+  display:block;
 }
 
 .card h3{
@@ -181,7 +178,7 @@ header{
 
 .card button{
   margin-top:10px;
-  padding:10px 20px;
+  padding:8px 50px;
   background:var(--maroon);
   color:white;
   border:none;
@@ -257,6 +254,42 @@ footer{
   color:#6b0f2f;
   font-weight:600;
 }
+/* ===== IMAGE SLIDER ===== */
+.slider{
+  position:relative;
+  overflow:hidden;
+}
+
+.slider img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity 0.6s ease;
+}
+
+.slider img.active{
+  opacity:1;
+}
+.buy-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:2px 10px;
+  background:var(--maroon);
+  color:white;
+  text-decoration:none;
+  border-radius:22px;
+  font-weight:700;
+  font-size:8px;
+  transition:0.3s;
+}
+
+.buy-btn:hover{
+  opacity:0.9;
+  transform:scale(1.03);
+}
 </style>
 </head>
 
@@ -297,25 +330,38 @@ footer{
 
   <div class="grid">
     <div class="card">
-      <div class="img-box">IMAGE</div>
-      <h3>Product Name</h3>
-      <span>₹000</span><br>
-      <button>Buy Now</button>
+      <div class="img-box slider">
+  <img src="AirPods1.jpg" class="active" alt="AirPods1">
+  <img src="AirPods2.jpg" alt="AirPods2">
+  <img src="AirPods3.jpg" alt="AirPods3">
+  <img src="AirPods4.jpg" alt="AirPods4">
+</div>
+      <h3>AirPods pro 2</h3>
+      <span>₹899</span><br>
+      <button> <a class="buy-btn"
+   href="https://wa.me/916398214130?text=Hello%20Maarika%20Store%20I%20want%20to%20buy%20AirPods%20Pro%202%20(₹699)"
+   target="_blank">
+   Buy Now
+</a> </button>
     </div>
 
     <div class="card">
-      <div class="img-box">IMAGE</div>
-      <h3>Product Name</h3>
-      <span>₹000</span><br>
-      <button>Buy Now</button>
+      <div class="img-box slider">
+  <img src="AirPods4.jpg" class="active" alt="AirPods4">
+  <img src="AirPods3.jpg" alt="AirPods3">
+  <img src="AirPods2.jpg" alt="AirPods2">
+  <img src="AirPods1.jpg" alt="AirPods1">
+</div>
+      <h3>Airpods pro 2 </h3>
+      <span>₹899</span><br>
+            <button> <a class="buy-btn"
+   href="https://wa.me/916398214130?text=Hello%20Maarika%20Store%20I%20want%20to%20buy%20AirPods%20Pro%202%20(₹699)"
+   target="_blank">
+   Buy Now
+</a> </button>
     </div>
 
-    <div class="card">
-      <div class="img-box">IMAGE</div>
-      <h3>Product Name</h3>
-      <span>₹000</span><br>
-      <button>Buy Now</button>
-    </div>
+    
   </div>
 </section>
 
@@ -329,8 +375,10 @@ footer{
 
     <!-- REVIEW 1 -->
     <div class="review-card">
-      <div class="review-img">SCREENSHOT HERE</div>
-      <span class="review-tag instagram">Instagram DM</span>
+      <div class="img-box slider">
+  <img src="review1.jpg" class="active" alt="review">
+</div>
+     <span class ="review-tag instagram">Instagram DM</span>
     </div>
 
     <!-- REVIEW 2 -->
@@ -342,19 +390,16 @@ footer{
     <!-- REVIEW 3 -->
     <div class="review-card">
       <div class="review-img">SCREENSHOT HERE</div>
-      <span class="review-tag instagram">Instagram Story</span>
+      <span class="review-tag instagram">facebook chat</span>
     </div>
 
     <!-- REVIEW 4 -->
-    <div class="review-card">
-      <div class="review-img">SCREENSHOT HERE</div>
-      <span class="review-tag whatsapp">WhatsApp Feedback</span>
-    </div>
+    
 
   </div>
 
   <div class="trust-line">
-    ⭐ Trusted by happy customers across India
+    🍁 Trusted by happy customers across India 🍁
   </div>
 </section>
   <h2>Contact Us</h2>
@@ -364,6 +409,7 @@ footer{
     <p>Email: maarikastore1@gmail.com</p>
     <p>WhatsApp: +91 6398214130</p>
     <p>Instagram: @maarikastore_9842</p>
+    <p>Facebook:XYZ</p>
   </div>
 </section>
 
@@ -377,6 +423,18 @@ function closeMenu(){
   document.getElementById("menu").classList.remove("active");
   document.getElementById("overlay").classList.remove("show");
 }
+
+/* ===== AUTO IMAGE SLIDER (4 images) ===== */
+document.querySelectorAll(".slider").forEach((slider)=>{
+  const imgs = slider.querySelectorAll("img");
+  let i = 0;
+
+  setInterval(()=>{
+    imgs[i].classList.remove("active");
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add("active");
+  }, 2000);
+});
 </script>
 
 </body>
