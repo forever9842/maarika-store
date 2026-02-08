@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maarika Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins, sans-serif;}
+
+:root{
+  --pink:#fdecef;
+  --maroon:#6b0f2f;
+}
+
+body{
+  background:var(--pink);
+  color:#333;
+}
+body{
+  height:100%;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:linear-gradient(90deg,#6b0f2f,#c94a6a);
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* LEFT MENU */
+.menu-btn{
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+  width:40px;
+}
+
+/* CENTER LOGO */
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+
+/* RIGHT LOGIN ICON */
+.login-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.login-btn::before{
+  content:"👤";
+  font-size:20px;
+}
+
+/* ===== OFFER STRIP ===== */
+.offer-strip{
+  background:#fff5f8;
+  color:var(--maroon);
+  white-space:nowrap;
+  overflow:hidden;
+  padding:6px 0;
+  font-weight:600;
+}
+
+.offer-strip span{
+  display:inline-block;
+  padding-left:100%;
+  animation:marquee 12s linear infinite;
+}
+
+@keyframes marquee{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:40px 20px;
+}
+
+.hero h1{
+  color:var(--maroon);
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#555;
+  margin-bottom:15px;
+}
+
+.shop-btn{
+  background:var(--maroon);
+  color:white;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* ===== PRODUCTS ===== */
+.section-title{
+  text-align:center;
+  font-size:26px;
+  color:var(--maroon);
+  margin:30px 0 20px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  padding:0 15px 40px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.price{
+  color:var(--maroon);
+  font-weight:700;
+  margin:5px 0;
+}
+
+.buy-btn{
+  background:var(--maroon);
+  color:white;
+  padding:8px 12px;
+  border:none;
+  border-radius:20px;
+  font-size:14px;
+  cursor:pointer;
+}
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:#fdecef;
+  padding:20px;
+  transition:0.4s;
+  z-index:2000;
+}
+
+.side-menu.active{
+  left:0;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:none;
+  z-index:1500;
+}
+
+.overlay.show{
+  display:block;
+}
+.side-menu a{
+  display:block;
+  padding:12px 0;
+  color:#6b0f2f;
+  text-decoration:none;
+  font-weight:600;
+  font-size:17px;
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  transition:0.3s;
+}
+
+.side-menu a:hover{
+  color:#c94a6a;
+  padding-left:6px;
+}
+
+#viewer{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(255,255,255,0.15), rgba(107,15,47,0.95));
+  backdrop-filter: blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+#viewer img{
+  max-width:88%;
+  max-height:75%;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+  animation:zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(0.8);}
+  to{transform:scale(1);}
+}
+.close-viewer{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:45px;
+  height:45px;
+  background:white;
+  color:#6b0f2f;
+  font-size:22px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:10001; /* arrows se upar */
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#6b0f2f;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
+  z-index:10000; /* close se neeche */
+  box-shadow:0 5px 15px rgba(0,0,0,0.25);
+}
+
+.left{ left:20px; }
+.right{ right:20px; }
+
+.cart-btn{
+  background:#c94a6a;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:14px;
+  cursor:pointer;
+  margin-top:6px;
+}
+
+.cart-icon{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.cart-icon::before{
+  content:"";
+  font-size:20px;
+}
+
+.buy-btn{
+  background:#6b0f2f;
+  color:white;
+  padding:8px 12px;
+  border-radius:20px;
+  text-decoration:none;
+  display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="side-menu" id="menu">
+  <div class="close-btn" onclick="closeMenu()">✖</div>
+  <h3>Maarika Store</h3>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="new-arrivals.html">New Arrivals</a>
+  <a href="track-order.html">Track Order</a>
+<a href="terms.html">Terms & Conditions</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="return-refund.html">Return & Refund Policy</a>
+<a href="shipping.html">Shipping Policy</a>
+<a href="cart.html" onclick="closeMenu()">My Cart</a>
+  <a href="help.html">help</a>
+  <a href="https://instagram.com/maarikastore_9842" target="_blank">Instagram</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<header>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
+  <div class="logo">Maarika Store</div>
+  <a href="login.html" class="login-btn"></a>
+<a href="cart.html" class="cart-icon">🛒</a>
+</header>
+
+<div class="offer-strip">
+  <span>🔥 Special Offer: Free Shipping on Orders Above ₹499 | New Arrivals Just Dropped ✨</span>
+</div>
+
+<section class="hero">
+  <h1>Welcome to Maarika Store</h1>
+  <p>Trendy products with premium quality 💖</p>
+</section>
+
+<h2 class="section-title">Featured Products</h2>
+
+<div class="products">
+  
+ 
+
+
+
+
+
+ <div class="card" onclick="openViewer(this)">
+  <img src="AirPods3.jpg" alt="">
+  <h4>Earbuds Extra Battery</h4>
+       <div class="price">₹499</div>
+  
+  <a class="buy-btn"
+href="https://wa.me/916398214130?text=I%20want%20to%20buy%20Wireless%20Earbuds%20-%20₹499"
+target="_blank"
+onclick="event.stopPropagation()">
+Buy Now
+</a>
+<button class="cart-btn" onclick="addToCart('Wireless Earbuds', 499)">Add to Cart</button>
+
+       <div class="gallery" data-images="AirPods3.jpg,AirPods2.jpg,AirPods1.jpg,AirPods4.jpg"></div>
+</div>
+
+    
+
+
+
+
+
+  <div class="card" onclick="openViewer(this)">
+  <img src="keychain1.jpg" alt="">
+  <h4>Cool Keychain GUARDIAN BELL</h4>
+       <div class="price">₹199</div>
+
+  <a class="buy-btn"
+href="https://wa.me/916398214130?text=I%20want%20to%20buy%20keychain%20-%20₹199"
+target="_blank"
+onclick="event.stopPropagation()">
+Buy Now
+</a>
+  <button class="cart-btn" onclick="addToCart('Cool Keychain', 199)">Add to Cart</button>
+
+        <div class="gallery" data-images="keychain1.jpg,keychain2.jpg,keychain3.jpg,keychain4.jpg"></div>
+</div>
+
+     
+
+
+
+
+         <div class="card" onclick="openViewer(this)">
+  <img src="trimmer1.jpg" alt="">
+  <h4>Trimmer t9</h4>
+       <div class="price">₹199</div>
+
+  <a class="buy-btn"
+href="https://wa.me/916398214130?text=I%20want%20to%20buy%20trimmert9%20-%20₹199"
+target="_blank"
+onclick="event.stopPropagation()">
+Buy Now
+</a>
+  <button class="cart-btn" onclick="addToCart('Trimmer t9', 199)">Add to Cart</button>
+
+        <div class="gallery" data-images="trimmer1.jpg,trimmer2.jpg,trimmer3.jpg,trimmer4.jpg"></div>
+</div>
+
+     
+
+
+
+
+        <div class="card" onclick="openViewer(this)">
+  <img src="keychain4.jpg" alt="">
+  <h4>Cool Keychain</h4>
+       <div class="price">₹199</div>
+
+  <a class="buy-btn"
+href="https://wa.me/916398214130?text=I%20want%20to%20buy%20keychain%20-%20₹199"
+target="_blank"
+onclick="event.stopPropagation()">
+Buy Now
+</a>
+  <button class="cart-btn" onclick="addToCart('Cool Keychain', 199)">Add to Cart</button>
+
+        <div class="gallery" data-images="keychain4.jpg,keychain2.jpg,keychain3.jpg,keychain1.jpg"></div>
+</div>
+
+
+<script>
+let images = [];
+let currentIndex = 0;
+
+function openViewer(card){
+  const data = card.querySelector('.gallery').dataset.images;
+  images = data.split(',');
+  currentIndex = 0;
+
+  document.getElementById("viewer").style.display = "flex";
+  document.getElementById("viewer-img").src = images[currentIndex];
+}
+
+function closeViewer(){
+  document.getElementById("viewer").style.display = "none";
+}
+
+function nextImg(){
+  currentIndex = (currentIndex + 1) % images.length;
+  document.getElementById("viewer-img").src = images[currentIndex];
+}
+
+function prevImg(){
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  document.getElementById("viewer-img").src = images[currentIndex];
+}
+
+function openMenu(){document.getElementById("menu").classList.add("active");document.getElementById("overlay").classList.add("show");}
+function closeMenu(){document.getElementById("menu").classList.remove("active");document.getElementById("overlay").classList.remove("show");}
+
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBa8Sb8mkeGrDDmE540cBkz5ntgLZ4icUU",
+  authDomain: "maarikastore-b11b9.firebaseapp.com",
+  projectId: "maarikastore-b11b9",
+  storageBucket: "maarikastore-b11b9.appspot.com",
+  messagingSenderId: "547356607178",
+  appId: "1:547356607178:web:aa7773d827dbad99726a33"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.addToCart = async function(name, price){
+  const user = auth.currentUser;
+
+  if(!user){
+    alert("Please login first!");
+    window.location.href="login.html";
+    return;
+  }
+
+  try{
+    await addDoc(collection(db, "cart"), {
+      Name: name,
+      Price: price,
+      User: user.uid
+    });
+
+    alert("Added to Cart 🛒");
+  }
+  catch(error){
+    alert(error.message);
+  }
+}
+</script>
+
+<!-- FULL SCREEN IMAGE VIEWER -->
+<div id="viewer">
+  <span class="close-viewer" onclick="closeViewer()">✖</span>
+  <span class="nav left" onclick="prevImg()">❮</span>
+  <img id="viewer-img">
+  <span class="nav right" onclick="nextImg()">❯</span>
+</div>
+</body>
+</html>
