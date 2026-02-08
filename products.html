@@ -6,71 +6,58 @@
 <title>Products | Maarika Store</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Poppins', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+:root{--pink:#fdecef;--maroon:#6b0f2f;}
+body{background:#fff;color:#333;}
 
-:root{
-  --pink:#fdecef;
-  --maroon:#6b0f2f;
-}
-
-body{
-  background:#fff;
-  color:#333;
-}
-
-/* HEADER */
 header{
   background:linear-gradient(90deg,#6b0f2f,#c94a6a);
   padding:16px 20px;
   display:flex;
   align-items:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position:sticky;top:0;z-index:1000;
+}
+.menu-btn{font-size:26px;color:white;cursor:pointer;margin-right:15px;}
+.logo{color:white;font-size:30px;font-weight:700;text-align:center;flex:1;}
+
+.products{padding:60px 20px;background:#fff5f8;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:25px;}
+
+.card{background:white;border-radius:18px;padding:15px;box-shadow:0 10px 25px rgba(0,0,0,.08);text-align:center;}
+.img-box{height:300px;background:#fff5f8;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:10px;}
+.img-box img{max-width:100%;max-height:100%;object-fit:contain;}
+.card h3{color:var(--maroon);}
+.price{font-weight:600;margin:10px 0;}
+
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.btn{padding:9px;border-radius:18px;font-size:13px;color:white;text-decoration:none;font-weight:600;}
+.wa{background:#25D366;}
+.amazon{background:#111;}
+.flipkart{background:#2874f0;}
+.meesho{background:#e91e63;}
+
+footer{
+  background:linear-gradient(90deg,#6b0f2f,#3a081a);
+  color:white;text-align:center;padding:18px 10px;margin-top:40px;
 }
 
-.menu-btn{
-  font-size:26px;
-  color:white;
-  cursor:pointer;
-  margin-right:15px;
-}
-
-.logo{
-  color:white;
-  font-size:24px;
-  font-weight:700;
-}
-
-/* SIDE MENU */
 .side-menu{
   position:fixed;
   top:0;
   left:-260px;
   width:260px;
   height:100%;
-  background:var(--pink);
-  box-shadow:2px 0 15px rgba(0,0,0,0.2);
+  background:#fdecef;
   padding:20px;
   transition:.4s;
   z-index:2000;
 }
 .side-menu.active{ left:0; }
 
-.side-menu h3{
-  color:var(--maroon);
-  margin-bottom:20px;
-}
-
 .side-menu a{
   display:block;
   padding:12px 0;
-  color:var(--maroon);
+  color:#6b0f2f;
   text-decoration:none;
   font-weight:600;
 }
@@ -78,11 +65,10 @@ header{
 .close-btn{
   font-size:22px;
   cursor:pointer;
-  color:var(--maroon);
+  color:#6b0f2f;
   margin-bottom:20px;
 }
 
-/* OVERLAY */
 .overlay{
   position:fixed;
   inset:0;
@@ -92,104 +78,66 @@ header{
 }
 .overlay.show{ display:block; }
 
-/* PAGE TITLE */
-.page-title{
-  padding:50px 20px;
-  text-align:center;
-  background:var(--pink);
-}
-.page-title h1{
-  color:var(--maroon);
-  font-size:34px;
-}
-.page-title p{
-  margin-top:8px;
-  color:#555;
-}
-
-/* PRODUCTS */
-.products{
-  padding:60px 20px;
-  background:#fff5f8;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:white;
-  border-radius:18px;
-  padding:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  text-align:center;
-}
-
-.img-box{
-  height:320px;
-  background:#fff5f8;
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;             
-}
-
 .img-box img{
   width:100%;
   height:100%;
-  object-fit:contain;       
-  display:block;
+  object-fit:contain;
+  cursor:pointer;
 }
 
-
-.card h3{
-  color:var(--maroon);
-  margin-bottom:5px;
+#viewer{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle, rgba(255,255,255,0.1), rgba(107,15,47,0.95));
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
-
-.price{
-  font-weight:600;
-  margin-bottom:12px;
-}
-
-/* BUTTONS */
-.btns{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.btn{
-  padding:9px 10px;
+#viewer img{
+  max-width:90%;
+  max-height:80%;
   border-radius:18px;
-  font-size:13px;
+}
+.close-viewer{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:white;
+  color:#6b0f2f;
+  width:45px;height:45px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+}
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#6b0f2f;
   color:white;
-  text-decoration:none;
-  font-weight:600;
+  width:55px;height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
 }
-
-/* individual */
-.wa{ background:#25D366; }
-.amazon{ background:#111; }
-.flipkart{ background:#2874f0; }
-.meesho{ background:#e91e63; }
-
-/* FOOTER */
-footer{
-  background:#2b0b15;
-  color:#eee;
-  padding:35px 20px;
-  text-align:center;
-  margin-top:40px;
-}
+.left{left:20px;}
+.right{right:20px;}
 </style>
 </head>
 
 <body>
+
+<header>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
+  <div class="logo">Maarika Store</div>
+</header>
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="menu">
@@ -197,70 +145,132 @@ footer{
   <h3>Maarika Store</h3>
   <a href="index.html">Home</a>
   <a href="products.html">Products</a>
-  <a href="categories.html">Categories</a>
   <a href="new-arrivals.html">New Arrivals</a>
   <a href="track-order.html">Track Order</a>
-  <a href="index.html#contact">Contact Us</a>
+<a href="terms.html">Terms & Conditions</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="return-refund.html">Return & Refund Policy</a>
+<a href="shipping.html">Shipping Policy</a>
+<a href="cart.html" onclick="closeMenu()">My Cart</a>
+  <a href="help.html">help</a>
   <a href="https://instagram.com/maarikastore_9842" target="_blank">Instagram</a>
-  <a href="https://wa.me/916398214130" target="_blank">WhatsApp</a>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<header>
-  <div class="menu-btn" onclick="openMenu()">☰</div>
-  <div class="logo">Maarika Store</div>
-</header>
-
-<section class="page-title">
-  <h1>Our Products</h1>
-  <p>Choose your favourite & order easily</p>
-</section>
-
 <section class="products">
-  <div class="grid">
-
-    <!-- PRODUCT 1 -->
-    <div class="card">
-      <div class="img-box">IMAGE</div>
-      <h3>Product Name</h3>
-    <div class="price">₹000</div>
-    <div class="btns">
-        <a class="btn wa" href="https://wa.me/916398214130?text=I%20want%20this%20product" target="_blank">WhatsApp</a>
-        <a class="btn amazon" href="#" target="_blank">Amazon</a>
-        <a class="btn flipkart" href="#" target="_blank">Flipkart</a>
-        <a class="btn meesho" href="#" target="_blank">Meesho</a>
-      </div>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="card">
-      <div class="img-box">IMAGE</div>
-      <h3>Product Name</h3>
-      <div class="price">₹000</div>
-      <div class="btns">
-        <a class="btn wa" href="https://wa.me/916398214130?text=I%20want%20this%20product" target="_blank">WhatsApp</a>
-        <a class="btn amazon" href="#" target="_blank">Amazon</a>
-        <a class="btn flipkart" href="#" target="_blank">Flipkart</a>
-        <a class="btn meesho" href="#" target="_blank">Meesho</a>
-      </div>
-    </div>
-
-  </div>
+  <div class="grid" id="productGrid"></div>
 </section>
 
-<footer>
-  <p>© 2026 Maarika Store | All Rights Reserved</p>
-</footer>
+<div id="viewer">
+  <span class="close-viewer" onclick="closeViewer()">✖</span>
+  <span class="nav left" onclick="prevImg()">❮</span>
+  <img id="viewer-img">
+  <span class="nav right" onclick="nextImg()">❯</span>
+</div>
 
+<footer>© 2026 Maarika Store | All Rights Reserved</footer>
+
+<script>
+const products = [
+  
+
+
+
+{img:"AirPods3.jpg",gallery:["AirPods3.jpg","AirPods1.jpg","AirPods2.jpg","AirPods4.jpg"],name:"Earbuds",price:"₹499",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+  
+
+
+
+{img:"keychain3.jpg",gallery:["keychain3.jpg","keychain1.jpg","keychain2.jpg","keychain4.jpg"],name:"keychain",price:"₹199",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"trimmer1.jpg",gallery:["trimmer1.jpg","trimmer2.jpg","trimmer3.jpg","trimmer4.jpg"],name:"trimmer t9",price:"₹199",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+
+
+
+
+{img:"product5.jpg",name:"Product 5",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"product6.jpg",name:"Product 6",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"product7.jpg",name:"Product 7",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"product8.jpg",name:"Product 8",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"product9.jpg",name:"Product 9",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"},
+  
+
+
+
+{img:"product10.jpg",name:"Product 10",price:"₹000",amazon:"#amazon link",flipkart:"#flipkart link",meesho:"#meesho link"}
+];
+
+const grid = document.getElementById("productGrid");
+
+products.forEach(p=>{
+  grid.innerHTML += `
+    <div class="card">
+      <div class="img-box">
+  <img src="${p.img}" onclick='openViewer(${JSON.stringify(p.gallery)})'>
+</div>
+      <h3>${p.name}</h3>
+      <div class="price">${p.price}</div>
+      <div class="btns">
+        <a class="btn wa" href="https://wa.me/916398214130?text=I%20want%20${encodeURIComponent(p.name)}" target="_blank">WhatsApp</a>
+        <a class="btn amazon" href="${p.amazon}" target="_blank">Amazon</a>
+        <a class="btn flipkart" href="${p.flipkart}" target="_blank">Flipkart</a>
+        <a class="btn meesho" href="${p.meesho}" target="_blank">Meesho</a>
+      </div>
+    </div>
+  `;
+});
+</script>
 <script>
 function openMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("show");
 }
+
 function closeMenu(){
   document.getElementById("menu").classList.remove("active");
   document.getElementById("overlay").classList.remove("show");
+}
+</script>
+<script>
+let images = [];
+let currentIndex = 0;
+
+function openViewer(gallery){
+  images = gallery;
+  currentIndex = 0;
+  document.getElementById("viewer").style.display="flex";
+  document.getElementById("viewer-img").src = images[currentIndex];
+}
+function closeViewer(){
+  document.getElementById("viewer").style.display="none";
+}
+function nextImg(){
+  currentIndex = (currentIndex+1) % images.length;
+  document.getElementById("viewer-img").src = images[currentIndex];
+}
+function prevImg(){
+  currentIndex = (currentIndex-1+images.length) % images.length;
+  document.getElementById("viewer-img").src = images[currentIndex];
 }
 </script>
 
