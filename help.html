@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help | Maarika Store</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:#fdecef;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#6b0f2f,#c94a6a);
+  padding:14px 16px;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.back-btn{
+  font-size:22px;
+  cursor:pointer;
+}
+
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+
+
+/* CONTENT */
+.container{
+  padding:25px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h3{
+  margin-bottom:6px;
+  color:#6b0f2f;
+}
+
+.card p{
+  font-size:14px;
+  color:#555;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn{
+  display:block;
+  text-align:center;
+  background:#25d366;
+  color:white;
+  padding:14px;
+  border-radius:30px;
+  margin-top:25px;
+  font-weight:600;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="back-btn" onclick="goBack()">⬅</div>
+  <div class="logo">Maarika Store </div>
+  <div></div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h3>📦 Order Related Help</h3>
+    <p>If you have questions about your order, tracking, or delivery.</p>
+  </div>
+
+  <div class="card">
+    <h3>🔄 Return / Exchange</h3>
+    <p>Need to return or exchange a product? We are here to help.</p>
+  </div>
+
+  <div class="card">
+    <h3>💳 Payment Issue</h3>
+    <p>Facing payment failure or refund issues.</p>
+  </div>
+
+  <div class="card">
+    <h3>💬 Other Questions</h3>
+    <p>Any other query? Contact us directly.</p>
+  </div>
+
+ <a class="whatsapp-btn"
+href="https://wa.me/916398214130?text=help me"
+target="_blank"
+onclick="event.stopPropagation()">
+Chat on Whatsapp
+</a>
+</div>
+
+<script>
+function goBack(){
+  window.location.href="index.html";
+}
+
+
+function openWhatsApp(){
+  let phone = "916398214130";
+  let message = "Hello Maarika Store, I need help.";
+  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+</script>
+<footer class="footer">
+  © 2026 Maarika Store | All Rights Reserved
+</footer>
+</body>
+</html>
