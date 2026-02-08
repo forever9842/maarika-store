@@ -6,78 +6,67 @@
 <title>Track Order | Maarika Store</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
-
-:root{
-  --pink:#fdecef;
-  --maroon:#6b0f2f;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
-  background:#fff;
+  background:#fdecef;
   color:#333;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 /* HEADER */
 header{
   background:linear-gradient(90deg,#6b0f2f,#c94a6a);
   padding:16px 20px;
-  display:flex;
-  align-items:center;
-  position:sticky;
-  top:0;
-}
-
-.menu-btn{
-  font-size:26px;
-  color:white;
-  cursor:pointer;
-  margin-right:15px;
-}
-
-.logo{
+  text-align:center;
   color:white;
   font-size:24px;
   font-weight:700;
 }
 
 /* PAGE */
-.container{
-  max-width:500px;
-  margin:80px auto;
-  background:#fff5f8;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+.page{
+  padding:60px 20px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 
-.container h1{
-  color:var(--maroon);
+.page h1{
+  color:#6b0f2f;
+  font-size:34px;
   margin-bottom:10px;
 }
 
-.container p{
-  color:#555;
-  margin-bottom:25px;
+.page-content{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.track-box{
+  max-width:420px;
+  margin:auto;
+  background:white;
+  padding:28px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+.track-box input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  margin-bottom:18px;
   font-size:15px;
 }
 
-input{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:16px;
-  margin-bottom:20px;
-}
-
-button{
+.track-box button{
   width:100%;
   padding:14px;
   border:none;
@@ -85,61 +74,129 @@ button{
   background:#25D366;
   color:white;
   font-size:16px;
-  font-weight:600;
   cursor:pointer;
+  font-weight:600;
+  box-shadow:0 6px 18px rgba(37,211,102,0.4);
+}
+.track-box button:hover{
+  background:#1ebe5d;
 }
 
-/* FOOTER */
-footer{
-  margin-top:80px;
-  background:#2b0b15;
-  color:#eee;
-  padding:30px;
-  text-align:center;
+/* 🌿 LEAVES */
+.leaf{
+  position:fixed;
+  bottom:-60px;
+  width:60px;
+  opacity:0.7;
+  animation:leafUp 8s linear infinite;
+   z-index:5;
+  pointer-events:none;
 }
+.leaf.left{ left:10px; }
+.leaf.right{ right:10px; animation-delay:4s; }
+
+@keyframes leafUp{
+  0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+  30%{ opacity:0.8; }
+  100%{ transform:translateY(-110vh) rotate(180deg); opacity:0; }
+}
+
+/* 🐦 BIRDS */
+.bird{
+  position:fixed;
+  top:40px;
+  font-size:50px;
+  animation:fly 6s linear infinite;
+  z-index:0;
+}
+.bird:nth-child(1){ left:-50px; animation-delay:0s; }
+.bird:nth-child(2){ left:-120px; animation-delay:5s; }
+.bird:nth-child(3){ left:-200px; animation-delay:9s; }
+
+@keyframes fly{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(120vw); }
+}
+footer{
+  background:linear-gradient(90deg,#6b0f2f,#3a081a);
+  color:white;
+  text-align:center;
+  padding:18px 10px;
+}
+/* LEFT BACK BUTTON */
+.back-btn{
+  position:absolute;
+  left:12px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="menu-btn" onclick="history.back()">←</div>
-  <div class="logo">Maarika Store</div>
+  <div class="back-btn" onclick="goBack()">⬅</div>
+  <div class="logo">Maarika store </div>
 </header>
 
-<div class="container">
-  <h1>Track Your Order</h1>
-  <p>Enter your Order ID to track your order on WhatsApp</p>
 
-  <input type="text" id="orderId" placeholder="Enter Order ID (e.g. MK123)">
-  <button onclick="trackOrder()">Track on WhatsApp</button>
+<!-- 🌿 Leaves -->
+<img src="https://cdn-icons-png.flaticon.com/512/765/765620.png" class="leaf left">
+<img src="https://cdn-icons-png.flaticon.com/512/765/765620.png" class="leaf right">
+  <div class="page-content"
+<section class="page">
+  <h1>📦 Track Your Order</h1>
+  <p>Enter your special Order ID ✨</p>
+
+  <div class="track-box">
+    <input type="text" id="orderId" placeholder="Order ID here">
+    <button onclick="trackOrder()">💬 Track on WhatsApp</button>
+  </div>
+</section>
 </div>
 
-<footer>
-  © 2026 Maarika Store | All Rights Reserved
-</footer>
+<!-- 🔊 Sounds -->
+<audio id="birdSound" src="birds.mp3"></audio>
+<audio id="leafSound" src="leaves.mp3"></audio>
 
 <script>
-function trackOrder(){
-  const orderId =
-    document.getElementById("orderId").value.trim();
+/* Play sounds on first interaction */
+document.addEventListener("click", function(){
+  document.getElementById("birdSound").play();
+  document.getElementById("leafSound").play();
+}, { once:true });
 
-  if(orderId === ""){
+function trackOrder(){
+  const id = document.getElementById("orderId").value.trim();
+  if(id === ""){
     alert("Please enter your Order ID");
     return;
   }
 
-  const message =
-`Hello Maarika Store,
-I want to track my order.
-Order ID: ${orderId}`;
+  const message = encodeURIComponent(
+    "Hello Maarika Store 💖\nI want to track my order.\nOrder ID: " + id
+  );
 
-  const phone = "916398214130";
-  const encodedMessage = encodeURIComponent(message);
-  window.location.href =
-    `https://wa.me/${phone}?text=${encodedMessage}`;
+  window.location.href = "https://wa.me/916398214130?text=" + message;
+}
+
+</script>
+<script>
+function goBack(){
+  window.location.href="index.html";
 }
 </script>
-
+<footer class="footer">
+  © 2026 Maarika Store | All Rights Reserved
+</footer>
 </body>
 </html>

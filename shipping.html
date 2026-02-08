@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shipping Policy | Maarika Store</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+:root{--pink:#fdecef;--maroon:#6b0f2f;}
+body{background:#fff;color:#333;}
+header{background:linear-gradient(90deg,#6b0f2f,#c94a6a);padding:16px 20px;display:flex;align-items:center;position:sticky;top:0;z-index:1000;}
+.menu-btn{font-size:26px;color:#fff;cursor:pointer;margin-right:15px;}
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+.side-menu{
+position:fixed;top:0;left:-260px;width:260px;height:100%;background:var(--pink);box-shadow:2px 0 15px rgba(0,0,0,0.2);padding:20px;transition:0.4s;z-index:2000;}
+.side-menu.active{left:0;}
+.side-menu h3{color:var(--maroon);margin-bottom:20px;}
+.side-menu a{display:block;padding:12px 0;color:var(--maroon);text-decoration:none;font-weight:600;}
+.close-btn{font-size:22px;cursor:pointer;color:var(--maroon);margin-bottom:20px;}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;z-index:1500;}
+.overlay.show{display:block;}
+.page{padding:45px 20px;max-width:900px;margin:auto;}
+.page h1{text-align:center;color:var(--maroon);font-size:32px;margin-bottom:12px;}
+.page .updated{text-align:center;color:#666;margin-bottom:28px;font-size:14px;}
+.box{background:#fff5f8;border:1px solid #f6c9d5;border-radius:18px;padding:18px;margin-bottom:18px;}
+.box h2{color:var(--maroon);font-size:18px;margin-bottom:8px;}
+.box p,.box li{color:#444;font-size:15px;line-height:1.7;}
+.box ul{padding-left:18px;margin-top:8px;}
+footer{
+  background:linear-gradient(90deg,#6b0f2f,#3a081a);
+  color:white;
+  text-align:center;
+  padding:18px 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="side-menu" id="menu">
+  <div class="close-btn" onclick="closeMenu()">✖</div>
+  <h3>Maarika Store</h3>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="new-arrivals.html">New Arrivals</a>
+  <a href="track-order.html">Track Order</a>
+  <a href="terms.html">Terms & Conditions</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="return-refund.html">Return & Refund Policy</a>
+  <a href="shipping.html">Shipping Policy</a>
+ <a href="help.html">help</a>
+  <a href="https://instagram.com/maarikastore_9842" target="_blank">Instagram</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<header>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
+  <div class="logo">Maarika Store</div>
+</header>
+
+<section class="page">
+  <h1>Shipping Policy</h1>
+  <div class="updated">Last updated: 2026</div>
+
+  <div class="box">
+    <h2>1) Shipping Locations</h2>
+    <p>We deliver across India (serviceability depends on courier availability).</p>
+  </div>
+
+  <div class="box">
+    <h2>2) Processing Time</h2>
+    <ul>
+      <li>Orders are usually processed within 24-48 hours after confirmation.</li>
+      <li>On special sale days, processing may take longer.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>3) Delivery Time</h2>
+    <ul>
+      <li>Estimated delivery time: 3-7 working days (can vary by location).</li>
+      <li>Courier delays, weather conditions, or local restrictions may cause delays.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>4) Shipping Charges</h2>
+    <p>Shipping charges (if any) will be shown during order confirmation / checkout.</p>
+  </div>
+
+  <div class="box">
+    <h2>5) Contact</h2>
+    <p>For shipping-related issues, contact Maarika Store on WhatsApp with your Order ID.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Maarika Store | All Rights Reserved</p>
+</footer>
+
+<script>
+function openMenu(){document.getElementById("menu").classList.add("active");document.getElementById("overlay").classList.add("show");}
+function closeMenu(){document.getElementById("menu").classList.remove("active");document.getElementById("overlay").classList.remove("show");}
+</script>
+
+</body>
+</html>

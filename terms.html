@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms & Conditions | Maarika Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+:root{--pink:#fdecef;--maroon:#6b0f2f;}
+body{background:#fff;color:#333;}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#6b0f2f,#c94a6a);
+  padding:16px 20px;
+  display:flex;align-items:center;
+  position:sticky;top:0;z-index:1000;
+}
+.menu-btn{font-size:26px;color:#fff;cursor:pointer;margin-right:15px;}
+
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+
+/* SIDE MENU */
+.side-menu{
+  position:fixed;top:0;left:-260px;width:260px;height:100%;
+  background:var(--pink);
+  box-shadow:2px 0 15px rgba(0,0,0,0.2);
+  padding:20px;transition:0.4s;z-index:2000;
+}
+.side-menu.active{left:0;}
+.side-menu h3{color:var(--maroon);margin-bottom:20px;}
+.side-menu a{
+  display:block;padding:12px 0;color:var(--maroon);
+  text-decoration:none;font-weight:600;
+}
+.close-btn{font-size:22px;cursor:pointer;color:var(--maroon);margin-bottom:20px;}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.4);
+  display:none;z-index:1500;
+}
+.overlay.show{display:block;}
+
+/* PAGE */
+.page{
+  padding:45px 20px;
+  max-width:900px;margin:auto;
+}
+.page h1{
+  text-align:center;
+  color:var(--maroon);
+  font-size:32px;margin-bottom:12px;
+}
+.page .updated{
+  text-align:center;color:#666;margin-bottom:28px;font-size:14px;
+}
+.box{
+  background:#fff5f8;
+  border:1px solid #f6c9d5;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+}
+.box h2{
+  color:var(--maroon);
+  font-size:18px;margin-bottom:8px;
+}
+.box p, .box li{
+  color:#444;font-size:15px;line-height:1.7;
+}
+.box ul{padding-left:18px;margin-top:8px;}
+.note{
+  margin-top:20px;
+  text-align:center;
+  color:#6b0f2f;font-weight:600;
+}
+footer{
+  background:linear-gradient(90deg,#6b0f2f,#3a081a);
+  color:white;
+  text-align:center;
+  padding:18px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="menu">
+  <div class="close-btn" onclick="closeMenu()">✖</div>
+  <h3>Maarika Store</h3>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="new-arrivals.html">New Arrivals</a>
+  <a href="track-order.html">Track Order</a>
+  <a href="terms.html">Terms & Conditions</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="return-refund.html">Return & Refund Policy</a>
+  <a href="shipping.html">Shipping Policy</a>
+<a href="help.html">help</a>
+  <a href="https://instagram.com/maarikastore_9842" target="_blank">Instagram</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<header>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
+  <div class="logo">Maarika Store</div>
+</header>
+
+<section class="page">
+  <h1>Terms & Conditions</h1>
+  <div class="updated">Last updated: 2026</div>
+
+  <div class="box">
+    <h2>1) General</h2>
+    <p>
+      By accessing and using Maarika Store website, you agree to follow and be bound by these Terms & Conditions.
+      If you do not agree, please do not use our website.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>2) Product Information</h2>
+    <ul>
+      <li>Product images are for reference. Actual color may slightly vary due to lighting or screen settings.</li>
+      <li>We try our best to provide accurate descriptions, but minor differences can occur.</li>
+      <li>Stock availability can change anytime.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>3) Pricing & Payments</h2>
+    <ul>
+      <li>Prices are subject to change without prior notice.</li>
+      <li>Orders will be processed only after confirmation (Payment/COD verification).</li>
+      <li>If payment fails, the order may be cancelled automatically.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>4) Order Confirmation & Cancellation</h2>
+    <ul>
+      <li>Once the order is confirmed and shipped, cancellation may not be possible.</li>
+      <li>We reserve the right to cancel any order due to stock issues, incorrect pricing, or suspicious activity.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>5) Delivery</h2>
+    <ul>
+      <li>Delivery timelines are estimates and may vary due to courier delays, weather, or local restrictions.</li>
+      <li>We are not responsible for delays caused by third-party delivery partners.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>6) Returns & Refunds</h2>
+    <p>
+      Returns and refunds are handled as per our Return & Refund Policy. Please read that policy before placing an order.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>7) Intellectual Property</h2>
+    <p>
+      All website content (text, images, design) belongs to Maarika Store. Copying or reproduction is not allowed without permission.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>8) Contact</h2>
+    <p>
+      For any issue, you can contact us via WhatsApp or Instagram.
+    </p>
+  </div>
+
+  <div class="note">Thank you for shopping with Maarika Store ❤️</div>
+</section>
+
+<footer>
+  <p>© 2026 Maarika Store | All Rights Reserved</p>
+</footer>
+
+<script>
+function openMenu(){
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("show");
+}
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("show");
+}
+</script>
+
+</body>
+</html>
