@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | Maarika Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins, sans-serif;}
+
+:root{
+  --pink:#fdecef;
+  --rose:#c94a6a;
+  --deep:#6b0f2f;
+}
+
+html, body{
+  height:100%;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  background:#fdecef;
+  margin:0;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:linear-gradient(90deg,var(--deep),var(--rose));
+  color:white;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.back-btn{
+  font-size:22px;
+  cursor:pointer;
+}
+
+.logo{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  flex:1;
+}
+
+/* ===== HANGING POSTER TITLE ===== */
+.poster{
+  text-align:center;
+  margin:25px 0 10px;
+  position:relative;
+}
+
+.poster span{
+  background:white;
+  padding:10px 25px;
+  border-radius:30px;
+  font-weight:700;
+  color:var(--deep);
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+  position:relative;
+  display:inline-block;
+}
+
+/* ropes */
+.poster::before,
+.poster::after{
+  content:"";
+  position:absolute;
+  top:-20px;
+  width:2px;
+  height:20px;
+  background:var(--deep);
+}
+
+.poster::before{ left:40%; }
+.poster::after{ right:40%; }
+
+/* ===== WATERMARK ===== */
+body::before{
+  content:"Zahraa";
+  position:fixed;
+  top:40%;
+  left:-10%;
+  font-size:120px;
+  color:rgba(201,74,106,0.06);
+  transform:rotate(-25deg);
+  font-weight:800;
+  pointer-events:none;
+}
+
+/* ===== CART ===== */
+.cart-container{
+  padding:20px;
+  display:grid;
+  gap:18px;
+}
+
+.cart-card{
+  background:white;
+  border-radius:18px;
+  padding:15px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.cart-card img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.item-info{ flex:1; }
+
+.item-info h4{
+  color:var(--deep);
+}
+
+.price{
+  color:var(--rose);
+  font-weight:700;
+}
+
+.remove-btn{
+  background:var(--deep);
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:15px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+/* ===== TOTAL ===== */
+.total-box{
+  margin:20px;
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
+  font-weight:700;
+  color:var(--deep);
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.checkout{
+  margin:15px auto 40px;
+  display:block;
+  background:var(--rose);
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+}
+footer{
+  background:linear-gradient(90deg,#6b0f2f,#3a081a);
+  color:white;
+  text-align:center;
+  padding:18px 10px;
+}
+.page-content{
+  flex:1;
+}
+
+.loader{
+  width:50px;
+  height:50px;
+  border:5px solid #f3f3f3;
+  border-top:5px solid #6b0f2f;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:40px auto;
+  display:block;
+}
+
+@keyframes spin{
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="back-btn" onclick="goBack()">⬅</div>
+  <div class="logo">Maarika Store</div>
+  <div></div>
+</header>
+
+<div class="page-content">
+
+<div id="loader" class="loader"></div>
+
+  <div class="poster">
+    <span>🛒 Your Shopping Cart</span>
+  </div>
+
+  <div class="cart-container" id="cartContainer"></div>
+  <div id="total">Total: ₹0</div>
+
+  <button class="checkout" id="orderBtn">Proceed to Order</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { 
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { 
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBa8Sb8mkeGrDDmE540cBkz5ntgLZ4icUU",
+  authDomain: "maarikastore-b11b9.firebaseapp.com",
+  projectId: "maarikastore-b11b9",
+  storageBucket: "maarikastore-b11b9.appspot.com",
+  messagingSenderId: "547356607178",
+  appId: "1:547356607178:web:aa7773d827dbad99726a33"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const container = document.getElementById("cartContainer");
+
+const totalDiv = document.getElementById("total");
+
+const loader = document.getElementById("loader");
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (user)=>{
+
+  currentUser = user;   // 🔥 IMPORTANT LINE
+
+  if(!user){
+    alert("Please login first");
+    window.location.href="login.html";
+    return;
+  }
+
+  const q = query(
+    collection(db,"cart"),
+    where("User","==",user.uid)
+  );
+
+loader.style.display = "none";
+
+  const snapshot = await getDocs(q);
+
+  let total = 0;
+  container.innerHTML="";
+
+  snapshot.forEach((itemDoc)=>{
+    const data = itemDoc.data();
+    total += data.Price;
+
+    container.innerHTML += `
+      <div class="cart-card">
+        <div class="item-info">
+          <h4>${data.Name}</h4>
+          <div class="price">₹${data.Price}</div>
+        </div>
+        <button class="remove-btn" onclick="removeItem('${itemDoc.id}')">Remove</button>
+      </div>
+    `;
+  });
+
+  totalDiv.innerText = "Total: ₹" + total;
+loader.style.display = "none";
+
+});
+
+// 🔥 REMOVE ITEM
+window.removeItem = async function(id){
+  await deleteDoc(doc(db,"cart",id));
+  location.reload();
+};
+
+// 🔥 PROCEED TO ORDER
+
+orderBtn.addEventListener("click", async () => {
+
+  if(!currentUser){
+    alert("Please login first");
+    return;
+  }
+
+  const q = query(
+    collection(db,"cart"),
+    where("User","==",currentUser.uid)
+  );
+
+  const snapshot = await getDocs(q);
+
+  if(snapshot.empty){
+    alert("Cart is empty!");
+    return;
+  }
+
+  let message = "🛒 *New Order - Maarika Store* \n\n";
+  let total = 0;
+
+  snapshot.forEach((doc)=>{
+    const data = doc.data();
+    message += `• ${data.Name} - ₹${data.Price}\n`;
+    total += data.Price;
+  });
+
+  message += `\n💰 Total: ₹${total}`;
+
+  const phone = "916398214130";
+  const appUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`;
+const webUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+window.location.href = appUrl;
+
+setTimeout(() => {
+  window.location.href = webUrl;
+}, 2000);
+
+});
+
+</script>
+
+<script>
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+
+<footer class="footer">
+  © 2026 Maarika Store | All Rights Reserved
+</footer>
+</body>
+</html>
